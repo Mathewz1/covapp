@@ -1,23 +1,55 @@
-import logo from './logo.svg';
 import './App.css';
+import SearchBar from './components/SearchBar';
+import React, {useState} from 'react';
+import initialize from './fetch'
+import ResultsContainer from './components/ResultsContainer';
 
 function App() {
+  const [countries, setCountries] = useState({})
+  const [summaries, setSummaries] = useState([])
+  const [global, setGlobal] = useState({})
+  const [current, setCurrent] = useState({
+            Country: "Unknown",
+            NewConfirmed: 0,
+            NewDeaths: 0,
+            NewRecovered: 0,
+            TotalConfirmed: 0,
+            TotalDeaths: 0,
+            TotalRecovered: 0
+  })
+
+  initialize((c, s, g) => {
+    setCountries(c)
+    setSummaries(s)
+    setGlobal(g)
+
+    setCurrent(global)
+  }, (error) => {alert("Failed to fetch data")})
+
+  function handleSearchCountry(newCountry) {
+    console.log(newCountry)
+    
+    let slug = countries[newCountry.toUpperCase()];
+        if (slug !== undefined) {
+          setCurrent(summaries.find((ele) => {return ele.Slug === slug}))
+        }
+        else {
+            let sugg = summaries.find((ele) => { return ele.Country.toUpperCase().includes(newCountry.toUpperCase())});
+        
+            alert(`Country not found!\n\n${sugg? ("Did you mean " + sugg.Country + "?") : ""}`);
+        }
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+
+      <header id="title">
+        <h1>Covid-19 Statistics</h1>
       </header>
+
+      <SearchBar value="" handleSearch={handleSearchCountry}></SearchBar>
+      <ResultsContainer data={current}/>
+      
     </div>
   );
 }

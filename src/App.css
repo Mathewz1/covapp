@@ -1,38 +1,108 @@
-.App {
+* {
+  box-sizing: border-box;
+  font-size: 1.005em;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+body {
   text-align: center;
+  background-color: #dde;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
+#search-container, .result-card {
   background-color: #282c34;
-  min-height: 100vh;
+}
+
+#title h1 {
+  font-size: 2.5em;
+  padding: 10px;
+  font-family: Arial, Helvetica, sans-serif;
+  letter-spacing: 5px;
+  color: crimson;
+}
+
+#search-container {
+  height: 200px;
+  box-shadow: 0px 5px 5px 0px #222;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+#search-container, #results-container {
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  flex-wrap: wrap;
 }
 
-.App-link {
-  color: #61dafb;
+#search-container * {
+  height: 40px;
+  margin: 8px;
+  border-radius: 8px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+#search-container input {
+  background-color: #eee;
+  width: 650px;
+  padding: 10px;
+  min-width: 300px;
+  border: 1px solid #555;
+  color: crimson;
+}
+
+#search-button {
+  width: 100px;
+  text-align: center;
+  line-height: 40px;
+  background-color: crimson;
+  color: #eee;
+  cursor: pointer;
+}
+
+#results-container {
+  min-height: 70vh;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.result-card {
+    display: inline-block;
+    width:300px;
+    margin:16px;
+    height:215px;
+    border-radius:5px;
+    text-align:center;
+    padding-top:20px;
+    box-shadow: 0px 0px 8px 1px #222;
+    color: #eee;
+}
+
+.result-card * {
+  display:inline-block;
+  position:relative;
+}
+.result-card strong {
+  margin-top:15px;
+  font-size:4em;
+}
+.result-card span {
+  font-size:1em;
+  font-family: cursive;
+  font-weight:bolder;
+  color: #7d7f89;
+}
+.result-card label {
+  font-size:1.1em;
+  top:-5px;
+  letter-spacing:5px;
+  color: crimson;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.result-card qoute {
+  margin-top:15px;
+  font-size:0.9em;
+  font-weight:bolder;
+  color: rgb(12, 141, 98);
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
