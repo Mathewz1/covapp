@@ -1,5 +1,4 @@
 
-
 export default function initialize(onSuccess, onFailure) {
     requestData("https://api.covid19api.com/summary", (result) => {
         if (result !== 'Error') {
@@ -36,19 +35,19 @@ function requestData(url, callBack) {
         if (xhttp.readyState === 4 && xhttp.status === 200) {
             callBack(JSON.parse(xhttp.responseText));
             call++;
-            //xhttp.close;
+            xhttp.abort();
         }
         
         else if (xhttp.status > 400) {
             callBack("Error");
             call++;
-            //xhttp.close;
+            xhttp.abort();
         }
     }
     setTimeout(() => {
         if (call === 0) {
             callBack("Error");
-            //xhttp.close;
+            xhttp.abort();
         }
     }, 10000);
 }

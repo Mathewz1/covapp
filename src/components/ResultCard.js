@@ -6,13 +6,13 @@ function ResultCard(props) {
     function getNumStringShort(amount) {
         
             if (amount >= 1000000000)
-                return String.format("%.1f", amount/1000000000) + "B";
+                return Math.floor(amount/1000000000) + "B";
 
             else if (amount >= 1000000)
-                return String.format("%.1f", amount/1000000) + "M"
+                return Math.floor(amount/1000000) + "M"
 
             else if (amount >= 1000)
-                return String.format("%.1f", amount/1000) + "K"
+                return Math.floor( amount/1000) + "K"
             else return amount
         
     }

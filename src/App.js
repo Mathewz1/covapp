@@ -18,13 +18,15 @@ function App() {
             TotalRecovered: 0
   })
 
-  initialize((c, s, g) => {
-    setCountries(c)
-    setSummaries(s)
-    setGlobal(g)
-
-    setCurrent(global)
-  }, (error) => {alert("Failed to fetch data")})
+  window.onload = (ev) => {
+    initialize((c, s, g) => {
+      setCountries(c)
+      setSummaries(s)
+      setGlobal(g)
+  
+      setCurrent(global)
+    }, (error) => {console.log("Failed to fetch data")})
+  }
 
   function handleSearchCountry(newCountry) {
     console.log(newCountry)
